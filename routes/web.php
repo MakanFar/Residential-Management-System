@@ -17,12 +17,38 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+//auth route for both 
+Route::group(['middleware' => ['auth']], function() { 
+    Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
-require __DIR__ . '/auth.php';
+    
+    
 
-Route::get('/myaccount', function () {
-    return view('myaccount');
+
+
+
+    
 });
+
+// for tenants
+Route::group(['middleware' => ['auth', 'role:tenant']], function() { 
+    Route::get('/dashboard/tenantprofile', 'App\Http\Controllers\DashboardController@tenantprofile')->name('dashboard.tenantprofile');
+    Route::get('/dashboard/tenantbill', 'App\Http\Controllers\TenantBillController@index')->name('dashboard.tenantbill');
+    Route::get('/dashboard/payment', 'App\Http\Controllers\TenantBillController@payment')->name('dashboard.payment');
+    
+    Route::post('/dashboard/tenantprofile','App\Http\Controllers\UserController@update')->name('dashboard.tenantprofile');
+    
+});
+
+// for managers
+Route::group(['middleware' => ['auth', 'role:management']], function() { 
+    Route::get('/dashboard/managerprofile', 'App\Http\Controllers\DashboardController@managerprofile')->name('dashboard.managerprofile');
+    Route::post('/dashboard/managerprofile','App\Http\Controllers\UserController@update')->name('dashboard.managerprofile');
+    
+});
+
+
+
+
+
+require __DIR__.'/auth.php';
