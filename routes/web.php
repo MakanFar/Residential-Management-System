@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth', 'role:management']], function() {
     Route::get('/dashboard/tenantmanager', 'App\Http\Controllers\TenantManagerController@index')->name('dashboard.tenantmanager');
     Route::get('edittenant/{id}', [ "uses" => 'App\Http\Controllers\TenantManagerController@edittenant',"as" => 'edittenant']);
     Route::post('/dashboard/edittenant', 'App\Http\Controllers\TenantManagerController@update')->name('dashboard.edittenant');
+    Route::delete('deleteBill/{id}', [ "uses" => 'App\Http\Controllers\ManagerBillController@deleteBill',"as" => 'deleteBill']);
     Route::delete('deleteTenant/{id}', [ "uses" => 'App\Http\Controllers\TenantManagerController@deleteTenant',"as" => 'deleteTenant']);
     Route::delete('deleteManager/{id}', [ "uses" => 'App\Http\Controllers\UserController@deleteManager',"as" => 'deleteManager']);
 });

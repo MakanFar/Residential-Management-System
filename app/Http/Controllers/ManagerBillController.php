@@ -27,7 +27,7 @@ class ManagerBillController extends Controller
         return view('editbill',compact('bill'));
     }
 
-    public function delete($bill_id)
+    public function deleteBill($bill_id)
     {
         
         
