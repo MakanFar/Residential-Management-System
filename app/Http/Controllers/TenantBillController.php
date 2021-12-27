@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Bill;
-use App\Models\contract;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,20 +19,25 @@ class TenantBillController extends Controller
         return view('tenantbill',compact('bills'));
     }
 
-    public function payment(Request $request)
+    public function payment($bill_id)
     {
-        $request->validate([
-            'name'=>'required|max:255',
-            'IBAN'=>'required',
-        ]);
-        $bill = Bill::findOrFail($id);
+        $bill = Bill::where('id', $bill_id)->first();
+        return view('payment',compact('bill'));
+      
+    }
 
-         $status = "Paid";
-    
-         $bill->status = $status;
+
+    public function pay(Request $request){
+
+        
+      
+        $bill = Bill::where('id', $request['id'])->first();
+
+        $bill->status = $request['status'];
        
-         $post->save();
-        return redirect()->route('tenantbill')->with('success','payment successful');
+
+        $bill->save();
+        return back()->with('message','Payment Successful');
     }
 
     

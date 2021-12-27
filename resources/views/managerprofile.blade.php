@@ -14,9 +14,9 @@
                   <form method="POST" action="{{ route('dashboard.managerprofile') }}">
                       @csrf
                       @if(session()->get('message'))
-                      <div class="alert alert-success" role="alert">
-                          <strong>Success: </strong>{{session()->get('message')}}
-                      </div>
+                        <div class="alert alert-success" role="alert">
+                            <strong>Success: </strong>{{session()->get('message')}}
+                        </div>
                       @endif
                       <div class="grid grid-cols-2 gap-6">
                           <div class="grid grid-rows-2 gap-6">
@@ -52,15 +52,15 @@
                           </x-button>
                       </div>
                   </form>
-  
-                 
-  
-  
-                  <div class="flex items-center justify-end mt-4">
-                      <x-button class="mj_btn btn btn-warning">
-                          {{ __('Delete Profile') }}
-                      </x-button>
-                  </div>
+
+                  <form class="inline-block" action="{{ route('deleteManager', auth()->user()->id ) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                    @method('delete')
+                    @csrf
+                    <x-button class="mj_btn btn btn-warning">
+                        {{ __('Delete Profile') }}
+                    </x-button>
+                  </form>
+
   
                   
                   
@@ -72,4 +72,4 @@
      
     
     </div>
-  </x-app-layout>
+</x-app-layout>

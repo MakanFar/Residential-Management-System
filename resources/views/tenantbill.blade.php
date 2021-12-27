@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard for tenant') }}
+            {{ __('bill for tenant') }}
         </h2>
     </x-slot>
 
@@ -55,7 +55,7 @@
                                                 </td>
                 
                                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <a href="{{route('dashboard.payment',$bill->id)}}" class="text-indigo-600 hover:text-indigo-900">Pay</a>
+                                                    <a href="{{route('payment',$bill->id)}}" class="text-indigo-600 hover:text-indigo-900">Pay</a>
                                                 </td>
                                             </tr>
                                             @endforeach

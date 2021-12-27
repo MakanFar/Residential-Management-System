@@ -19,7 +19,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'type',
+      
     ];
 
     protected $hidden = [
@@ -36,11 +36,7 @@ class User extends Authenticatable
         return $this->hasOne(profile::class,'user_id');
     }
 
-    public function contract()
-    {
-        return $this->hasOne(contract::class,'user_id');
-    }
     public function Bill(){
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Bill::class);
     }
 }

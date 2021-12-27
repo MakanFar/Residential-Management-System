@@ -41,25 +41,19 @@
                 @endif
                 @if (Auth::user()->hasRole('management'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard.managerbill')" :active="request()->routeIs('dashboard.managerbill')">
+                        {{ __('Bills') }}
+                    </x-nav-link>
+                </div>
+                @endif
+                @if (Auth::user()->hasRole('management'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard.tenantmanager')" :active="request()->routeIs('dashboard.tenantmanager')">
                         {{ __('Tenants') }}
                     </x-nav-link>
                 </div>
                 @endif
-                @if (Auth::user()->hasRole('management'))
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Contracts') }}
-                    </x-nav-link>
-                </div>
-                @endif
-                @if (Auth::user()->hasRole('management'))
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Units') }}
-                    </x-nav-link>
-                </div>
-                @endif
+               
 
             </div>
 

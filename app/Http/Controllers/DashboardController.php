@@ -29,14 +29,4 @@ class DashboardController extends Controller
     return view('managerprofile');
    }
 
-   public function tenantbill()
-   {
-    return view('tenantbill');
-   }
-   public function payment($id)
-    {
-        //
-        $bill = Bill::find($id);
-        return view('payment',compact('bill'));
-    }
 }

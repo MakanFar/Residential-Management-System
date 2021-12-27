@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -38,14 +39,14 @@ class UserController extends Controller
     }
 
 
-    public function delete($id){
+    
+    public function deleteManager($user_id)
+    {
+        
+        $user = User::where('id', $user_id)->first();
 
-        Auth::logout();
-    
-        if ($id->delete()) {
-    
-             return Redirect::route('dashboard')->with('global', 'Your account has been deleted!');
-        }
-      
+        $user->delete();
+
+        return redirect()->route('dashboard');
     }
 }

@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Bill extends Model
-{
+{   public $timestamps = false;
     protected $fillable = [
+        'user_id',
         'date',
         'due',
         'total',

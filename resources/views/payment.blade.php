@@ -37,6 +37,8 @@
                               <div>
                                 <x-label for="CSV" :value="__('CSV')" />
                                 <x-input id="CSV" class="block mt-1 w-full" type="CSV" name="CSV" value="***" autofocus />
+                                <x-input id="status" class="block mt-1 w-full" type="hidden" name="status" value="Paid" autofocus />
+                                <x-input id="id" class="block mt-1 w-full" type="hidden" name="id" value="{{ $bill->id }} " autofocus />
                               </div>
                           </div>
                       </div>
